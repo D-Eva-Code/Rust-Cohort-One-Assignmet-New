@@ -3,7 +3,6 @@ fn main() {
     let integer:i32;
 
     loop{
-    println!("Select Funtionality Below");
     println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation");
     println!("Select Funtionality");
     let mut function= String::new();//creates a string variable to store user input
