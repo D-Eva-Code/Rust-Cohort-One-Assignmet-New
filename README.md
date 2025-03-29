@@ -1,7 +1,7 @@
-# Calculator & CGPA Calculator
+# Calculator & GPA Calculator
 
 ## 📌 Project Overview
-This project is a **Rust-based calculator** that performs basic arithmetic operations and also includes a **CGPA calculator** to help students determine their academic performance.
+This project is a **Rust-based calculator** that performs basic arithmetic operations and also includes a **GPA calculator** to help students determine their academic performance.
 
 ## 🚀 Features
 - **Basic Calculator Functions**
@@ -9,9 +9,9 @@ This project is a **Rust-based calculator** that performs basic arithmetic opera
   - Subtraction (-)
   - Multiplication (*)
   - Division (/)
-- **CGPA Calculator**
-  - Allows users to input grades and credit hours.
-  - Computes CGPA based on user input.
+- **GPA Calculator**
+  - Allows users to input grades and credit loads for each cource.
+  - Calculates GPA based on user input.
   
 ## 🛠️ Installation & Usage
 
