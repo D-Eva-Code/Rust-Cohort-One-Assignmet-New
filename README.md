@@ -11,7 +11,7 @@ This project is a **Rust-based calculator** that performs basic arithmetic opera
   - Division (/)
   - Log(x) and ln(x)
 - **GPA Calculator**
-  - Allows users to input grades and credit loads for each cource.
+  - Allows users to input grades and credit loads for each course.
   - Calculates GPA based on user input.
   
 ## 🛠️ Installation & Usage
