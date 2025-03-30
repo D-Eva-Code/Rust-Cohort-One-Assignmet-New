@@ -7,8 +7,9 @@ This project is a **Rust-based calculator** that performs basic arithmetic opera
 - **Basic Calculator Functions**
   - Addition (+)
   - Subtraction (-)
-  - Multiplication (*)
+  - Multiplication (*) 
   - Division (/)
+  - Log(x) and ln(x)
 - **GPA Calculator**
   - Allows users to input grades and credit loads for each cource.
   - Calculates GPA based on user input.

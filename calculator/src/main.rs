@@ -1,13 +1,15 @@
 use std::io;
+use std::f64;
 fn main() {
-    let integer:i32;
+    let integer:u32;
+    let mut log_value:f64= 0.0;
 
     loop{
-    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation");
+    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation\n6. Log(x)\n7. ln(x)");
     println!("Select Funtionality");
     let mut function= String::new();//creates a string variable to store user input
     io::stdin().read_line(&mut function).expect("failed to read input");//reads user input and stores in function
-    match function.trim().parse::<i32>(){//convert user input to signed integer
+    match function.trim().parse::<u32>(){//convert user input to signed integer
         Ok(num)=>{
             integer= num;
             break;
@@ -65,12 +67,12 @@ fn main() {
             println!("Go ahead and Divide: ");
             array(&mut add_array);
             let mut result= add_array[0] as f32;
-            for a in &add_array[1..]{//loop through the array and multiply all the elements
+            for a in &add_array[1..]{//loop through the array and divide all the elements
                 result/=*a as f32;//had to dereference the values in a first before converting i32 to f32
             }
             println!("Answer is {}!",result);
             }
-        if integer == 5 {
+        else if integer == 5 {
             let mut new_array: Vec<String> = Vec::new();//create new array to store grades
             println!("Enter grades (Separate with commas): ");
     
@@ -88,7 +90,7 @@ fn main() {
             }
     
             println!("Enter corresponding credit load");
-            let mut new_array2: Vec<u32> = Vec::new();//create a new empty array
+            let mut new_array2: Vec<u64> = Vec::new();//create a new empty array
             loop {
                 let mut function3 = String::new();//create a variable to store user input
                 io::stdin().read_line(&mut function3).expect("failed to read input");//read user input
@@ -97,7 +99,7 @@ fn main() {
                     break;
                 }
                 for a in function3.split(',') {
-                    match a.trim().parse::<u32>() {
+                    match a.trim().parse::<u64>() {
                         Ok(num) => new_array2.push(num),//push the input values to the array
                         Err(err) => println!("Invalid integer {:?}", err),
                     }
@@ -111,7 +113,7 @@ fn main() {
         let D=2;
         let E=1;
         let F=0;
-        let mut total:u32=0;
+        let mut total:u64=0;
         for (i,a) in new_array.iter().enumerate(){//loop through the grade array and keeps track of the values and indexes
             let grade= match a.as_str(){//converting the string to str 
                 "A"=> A,
@@ -127,9 +129,8 @@ fn main() {
             };
             total+= grade*new_array2[i];//adds the total grade multiplied by the coursecredit load
         }
-        let credit_sum:u32= new_array2.iter().sum();
-        let gpa:f32= total as f32/credit_sum as f32;//calculates the final gpa
-        println!("{}",total);
+        let credit_sum:u64= new_array2.iter().sum();
+        let gpa:f64= total as f64/credit_sum as f64;//calculates the final gpa
         println!("Your gpa is {}",gpa);
         if gpa <3.5{
             println!("Weldone, you can do better!");
@@ -138,6 +139,76 @@ fn main() {
             println!("Great job. you're doing great!");
         }
     }
-}
- 
+        else if integer==6{
+            println!("calculate value of log: ");
+            // let mut new_array3:Vec<f64>= Vec::new();
+            let mut log_x=String::new();
+            loop{
+            log_x.clear();
+            io::stdin().read_line(&mut log_x).expect("failed to readline");
+            if log_x.trim().is_empty(){
+                break;
+            }
+            if log_x.trim().starts_with("log(")&& log_x.trim().ends_with(")"){//check if the input is in the correct format starting with 'ln(' and ending with ')'
+            if let Some(start)= log_x.find("log("){//checks the input for ln( and if its found it returns the index of each character
+                if let Some(end)=log_x.find(")"){//checks the input for the closing bracket and if its found it returns the index of each character
+                    let number= &log_x[start+4..end];//extracts only the number inside the bracket "()". The `+4` skips the "log(" part, and `end` makes sure the user stops before the closing ")".This is string slicing. And we also borrowed the value using the '&'
+                match number.trim().parse::<f64>(){//converts the input which is a string to an f64 value
+                    Ok(num)=>{log_value=num;
+                        break;
+                    }   
+                    Err(err)=>{
+                        println!("error, invalid integer {}",err);
+                        continue;
+                    } 
+                }
+                }else {
+                    println!("Add closing bracket ')'");
+                }
+                }else{
+                    println!("invalid format, use 'log(x)'");
+                }
+            } 
+            }
+                let log_x_answer= log_value.log(10.0);//uses std::f64 library to calculate log base 10 of a number
+                println!("log({}) is {}",log_value, log_x_answer);
+            } 
+
+        else if integer==7{
+            println!("calculate value of ln: ");
+            // let mut new_array3:Vec<f64>= Vec::new();
+            let mut log_x=String::new();
+            loop{
+            log_x.clear();
+            io::stdin().read_line(&mut log_x).expect("failed to readline");
+            if log_x.trim().is_empty(){
+                break;
+            }
+            if log_x.trim().starts_with("ln(")&& log_x.trim().ends_with(")"){//check if the input is in the correct format starting with 'ln(' and ending with ')'
+            if let Some(start)= log_x.find("ln("){//checks the input for ln( and if its found it returns the index of each character
+                if let Some(end)=log_x.find(")"){//checks the input for the closing bracket and if its found it returns the index of each character
+                    let number= &log_x[start+3..end];//extracts only the number inside the bracket "()". The `+3` skips the "ln(" part, and `end` makes sure the user stops before the closing ")".This is string slicing. And we also borrowed the value using the '&'
+                match number.trim().parse::<f64>(){//converts the input which is a string to an f64 value
+                    Ok(num)=>{log_value=num;
+                        break;
+                    }   
+                    Err(err)=>{
+                        println!("error, invalid integer {}",err);
+                        continue;
+                    } 
+                }
+                }else {
+                    println!("Add closing bracket ')'");
+                }
+                }else{
+                    println!("invalid format, use 'ln(x)'");
+                }
+            } 
+            }
+                let log_x_answer= log_value.ln();//uses std::f64 library to calculate ln of a number
+                println!("ln({}) is {}",log_value, log_x_answer);
+            } 
+            
+        }
+            
         
