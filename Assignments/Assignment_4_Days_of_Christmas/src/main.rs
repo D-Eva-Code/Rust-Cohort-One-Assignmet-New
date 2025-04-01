@@ -1,28 +1,15 @@
 fn main(){
     let mut num= 1;
     while num<13{
-    println!("On the {} day of christmas my true love gave to me..", num);
-    days(num);
-    println!("\n");
-    num +=1;
+    println!("On the {} day of christmas my true love gave to me..", num);//prints for all the days
+    days(num);//uses the days function created
+    println!("\n");//seperates each part of the song with a new line
+    num +=1;//increment num by 1 after each 
     }
    
 }
-// fn days(mut num:i32){
-//     loop{
-//         if num ==1{
-//             println!("A partrich in a pear tree");
-//             break;
-//         }
-//         if num==2{
-//             println!("Two turtle doves");
-//             num -=1;
-    
-//     }
-// }
-// }
 
-fn days(num: usize) {
+fn days(num: u64) {
     let gifts = [
         "A partridge in a pear tree",
         "Two turtle doves",
@@ -38,9 +25,9 @@ fn days(num: usize) {
         "Twelve drummers drumming",
     ];
 
-    for i in (0..num).rev() {// to loop from num-1 down to 0
+    for i in (0..num).rev() {// to loop from num-1 down to 0 ie from index 11 to 0 
         if i == 0 && num > 1 {
-            println!("And {}", gifts[i]); // "And" only for the last line 
+            println!("And {}", gifts[i]); // adds "And" only for the last line 
         } else {
             println!("{}", gifts[i]);
         }
