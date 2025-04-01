@@ -9,7 +9,7 @@ fn main(){
    
 }
 
-fn days(num: u64) {
+fn days(num: usize) {
     let gifts = [
         "A partridge in a pear tree",
         "Two turtle doves",
