@@ -1,11 +1,13 @@
 use std::io;
 use std::f64;
+use rand::thread_rng;
+use rand::seq::SliceRandom;
 fn main() {
     let integer:u32;
     let mut log_value:f64= 0.0;
 
     loop{
-    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation\n6. Log(x)\n7. ln(x)");
+    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation\n6. Log(x)\n7. ln(x)\n8. Random math fact✨");
     println!("Select Funtionality");
     let mut function= String::new();//creates a string variable to store user input
     io::stdin().read_line(&mut function).expect("failed to read input");//reads user input and stores in function
@@ -208,7 +210,45 @@ fn main() {
                 let log_x_answer= log_value.ln();//uses std::f64 library to calculate ln of a number
                 println!("ln({}) is {}",log_value, log_x_answer);
             } 
-            
+
+            else if integer== 8{
+                println!("Here's a random fact");
+                
+                fn facts(){
+                    let random_facts= vec![
+                    "🔢 Zero is considered an even number because it's divisible by 2 with no remainder.",
+                    "🌌 A googol is 10¹⁰⁰ — a 1 followed by 100 zeroes. That’s way more than the number of atoms in the observable universe!",
+                    "🎩 Multiply any number by 9, sum the digits of the result, and you’ll get 9. Try it: 9 × 8 = 72 → 7 + 2 = 9.",
+                    "🔢 There are infinitely many primes.\nEuclid proved there’s no largest prime — they go on forever!",
+                    "♾️ There are different sizes of infinity\nSome infinities, like the real numbers, are bigger than others, like the counting numbers",
+                    "🧮 Pi (π) goes on forever without repeating — it's been calculated to over 100 trillion digits!",
+                    "🎯 A perfect number equals the sum of its divisors\n28 is perfect: 1 + 2 + 4 + 7 + 14 = 28."
+                    ];
+                let mut rng= thread_rng();
+                loop{
+                if let Some(random)= random_facts.choose(&mut rng){
+                    println!("Did you know that..\n{}",random);
+                }
+                else{
+                    println!("No random fact at this time.❕");
+                }
+                println!{"Generate more facts?\n'YES' or 'N0'"};
+                let mut input= String::new();
+                io::stdin().read_line(&mut input).expect("invalid input");
+                let uppercase_input= input.trim().to_uppercase();
+                if uppercase_input =="YES"{
+                    println!("here's another fact..\n");
+                    continue;
+                }
+                else{
+                    println!("You've learnt something new!😊");
+                    break;
+                }
+                
+                }
+               
+            }
+            facts();
         }
-            
+    }      
         
