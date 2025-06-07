@@ -2,12 +2,13 @@ use std::io;
 use std::f64;
 use rand::thread_rng;
 use rand::seq::SliceRandom;
+use roots::{find_roots_quadratic, Roots};
 fn main() {
     let integer:u32;
     let mut log_value:f64= 0.0;
 
     loop{
-    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation\n6. Log(x)\n7. ln(x)\n8. Random math fact✨");
+    println!("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Gpa calculation\n6. Log(x)\n7. ln(x)\n8. Quadratic Equation\n9. Random math fact✨");
     println!("Select Funtionality");
     let mut function= String::new();//creates a string variable to store user input
     io::stdin().read_line(&mut function).expect("failed to read input");//reads user input and stores in function
@@ -23,14 +24,14 @@ fn main() {
       }
     }
     let mut add_array:Vec<i32>= Vec::new();//creates an empty array to store user input
-    fn array(add_array:&mut Vec<i32>){//created function to avoid repitition of code since it was used in 4 functionalities
+    fn array(add_array:&mut Vec<i32>){//created function to avoid repitition of code since it was used in 5 functionalities
         let mut add= String::new();//creates a string variable to store user input
         loop{
                 io::stdin().read_line(&mut add).expect("failed to read input");//takes input from user
                 if add.trim().is_empty(){//using trim to remove extra white space from inputed value and .is_empty to check if user did not input anything
                     break;// end the array when user presses enter(did not input anything)
                 }
-                for a in add.split(|c| c=='+'||c=='-'||c=='/'||c=='*'){//check for any of these seperator symbols used to split the user input and extract the individual values
+                for a in add.split(|c| c=='+'||c=='-'||c=='/'||c=='*' ||c==','){//check for any of these seperator symbols used to split the user input and extract the individual values
                 match a.trim().parse::<i32>(){
                     Ok(num)=>
                         add_array.push(num),//puts the user input in the empty array
@@ -211,7 +212,7 @@ fn main() {
                 println!("ln({}) is {}",log_value, log_x_answer);
             } 
 
-            else if integer== 8{
+            else if integer== 9{
                 println!("Here's a random fact");
                 
                 fn facts(){
@@ -222,7 +223,8 @@ fn main() {
                     "🔢 There are infinitely many primes.\nEuclid proved there’s no largest prime — they go on forever!",
                     "♾️ There are different sizes of infinity\nSome infinities, like the real numbers, are bigger than others, like the counting numbers",
                     "🧮 Pi (π) goes on forever without repeating — it's been calculated to over 100 trillion digits!",
-                    "🎯 A perfect number equals the sum of its divisors\n28 is perfect: 1 + 2 + 4 + 7 + 14 = 28."
+                    "🎯 A perfect number equals the sum of its divisors\n28 is perfect: 1 + 2 + 4 + 7 + 14 = 28.",
+                    
                     ];
                 let mut rng= thread_rng();
                 loop{
@@ -241,7 +243,7 @@ fn main() {
                     continue;
                 }
                 else{
-                    println!("You've learnt something new!😊");
+                    println!("You've learnt something new!😊\n\nRemember:\n🔍 Understand concepts, don’t just memorize formulas!");
                     break;
                 }
                 
@@ -250,5 +252,45 @@ fn main() {
             }
             facts();
         }
-    }      
+        else if integer==8{
+            println!("Enter a,b and c in ax² + bx + c = 0\nSeperate values with a comma");
+            array(&mut add_array);
+            // for (i,a) in add_array.iter().enumerate(){
+            //     let values= match a.as_str{
+            //         a[0]=>a;
+            //         a[1]=>b;
+            //         a[2]=>c;
+            //     }
+            // }
+            let a = add_array[0] as f64;
+            let b = add_array[1] as f64;
+            let c = add_array[2] as f64;
+
+            let d= (b*b)- 4.0*a*c;
+            let dc= (-d as f64).sqrt();
+            let roots = find_roots_quadratic(a,b,c);
+            match roots{//using Roots crate to find solution to quadratic equation
+                Roots::No(_)=>{
+                    println!("No real roots.");
+                    let r1 = -b/(2.0*a);
+                    let r2 = dc/(2.0*a);
+
+                    println!("The complex roots are {}+{}i and {}-{}i",r1,r2,r1,r2);
+                }
+                
+                Roots::Two([x1,x2])=>{
+                    println!("Two real roots x1={}, x2={}",x1,x2);
+                }
+                Roots::One([x])=>{
+                    println!("one real root x={}",x);
+                }
+                Roots::Three(_) | Roots::Four(_) => {
+                    println!("Unexpected number of roots for a quadratic equation.");
+                }
+            }
+
+        }
+        }
+    
+      
         
