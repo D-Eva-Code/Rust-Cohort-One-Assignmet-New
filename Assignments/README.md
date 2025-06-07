@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 This project is a **Rust-based calculator** that performs basic arithmetic operations and also includes a **GPA calculator** to help students determine their academic performance.
-A **Random Math Facts Generator** a simple interactive command-line program that generates random, interesting math facts on demand
+A **Random Math Facts Generator** a simple interactive command-line program that generates random, interesting math facts on demand.
 
 ## 🚀 Features
 - **Basic Calculator Functions**
@@ -16,11 +16,11 @@ A **Random Math Facts Generator** a simple interactive command-line program that
   - Allows users to input grades and credit loads for each course.
   - Calculates GPA based on user input.
 - **Random Math Facts Generator**
-- Displays a variety of fun and educational math facts
--🔁 Lets users generate more facts in a loop
--👂 Accepts input to keep going or exit
--🧠 Covers topics like primes, infinity, pi, perfect numbers, and more
--📦 Uses rand crate for randomness
+  - Displays a variety of fun and educational math facts.
+  -🔁 Lets users generate more facts in a loop.
+  -👂 Accepts input to keep going or exit.
+  -🧠 Covers topics like primes, infinity, pi, perfect numbers, and more.
+  -📦 Uses rand crate for randomness.
 
   
 ## 🛠️ Installation & Usage
